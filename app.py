@@ -52,7 +52,7 @@ yeni_kayit = {
     "Seri": seri,
     "Metraj": metraj,
     "Kritik": kritik,
-    "Renk": RENK_KODLARI[urun]
+    "Renk": RENK_KODLARI.get(urun, "#FFFFFF")
 }
 
 tekrar_var_mi = any(
