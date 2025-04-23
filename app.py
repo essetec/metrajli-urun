@@ -83,12 +83,16 @@ if filtre_urun != "Tümü":
     data = [d for d in data if d["Ürün"] == filtre_urun]
 
 # Renkli tablo oluştur
+# Renkli tablo oluştur
 if data:
     df = pd.DataFrame(data)
-    def renk_format(row):
-        color = row["Renk"]
-        return [f"background-color: {color}" for _ in row]
+    if "Renk" in df.columns:
+        def renk_format(row):
+            color = row["Renk"]
+            return [f"background-color: {color}" for _ in row]
 
-    st.dataframe(df.drop(columns=["Renk"]).style.apply(renk_format, axis=1))
+        st.dataframe(df.drop(columns=["Renk"]).style.apply(renk_format, axis=1))
+    else:
+        st.dataframe(df)
 else:
     st.info("Henüz ürün girilmedi.")
